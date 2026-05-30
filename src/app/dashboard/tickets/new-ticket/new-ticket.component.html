@@ -5,12 +5,9 @@
 
 </app-control>
  
-<app-control  class="control" label="Request">
-    /*
-   we can use css class here because due to encapsulation, the css scope of a component app-control is global so ":host"
-    solution won't work, so we can add the class itself here so our styles don't break.
-    */
-    <textarea name="request" id="request" rows="3" required></textarea>    
+<app-control  label="Request">
+  
+    <textarea id="request" rows="3" required></textarea>    
 </app-control>
 
 <p>
