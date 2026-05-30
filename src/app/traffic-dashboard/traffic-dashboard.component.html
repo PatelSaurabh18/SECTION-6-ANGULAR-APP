@@ -6,6 +6,7 @@
             @for (dataPoint of dummyTrafficData; track dataPoint.id) {
               <div [style.height]="(dataPoint.value / maxTraffic) * 100 + '%'"></div>
             }
-          </div>
+          </div>  
         <!-- </div> -->
+        <!-- here we are using e binding explained in 121 ([style.height]="(dataPoint.value / maxTraffic) * 100 + '%'")-->
  

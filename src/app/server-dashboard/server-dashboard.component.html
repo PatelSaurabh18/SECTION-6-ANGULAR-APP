@@ -8,8 +8,23 @@
     'status-offline': currentStatus === 'offline',
     'status-unknown': currentStatus === 'unknown',
   }"
-  
 >
+
+<!-- [style.fontSize]="'64px'"
+  here we have to give it inside '' cause it is an expression evaluation so it asks for a TS code so we have to gice it as a string value
+  or we can use it like this also:
+  [style]="{
+    fontSize:'64px'
+  }"
+  OR
+  [style]="{
+    'font-size':'64px'
+  }" 
+  and all this inside div actually used in control.html file
+  -->
+
+
+  
   <!-- here we are always setting status class in this div but other class on a certain condition
    here, we can set multiple key values but the keyname should be valid for css otherwise for custom key we have to 
    give it as a string
