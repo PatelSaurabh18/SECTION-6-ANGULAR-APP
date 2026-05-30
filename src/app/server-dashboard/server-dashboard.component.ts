@@ -5,7 +5,8 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './server-dashboard.component.html',
-  styleUrl: './server-dashboard.component.css'
+  styleUrl: './server-dashboard.component.css',
+
 })
 export class ServerDashboardComponent {
   currentStatus = 'online';

@@ -13,6 +13,7 @@ import { Component, input, ViewEncapsulation ,OnInit, computed } from '@angular/
   // Yes — with encapsulation: NONE, using :host can lead to CSS conflicts and unpredictable overrides, so you must rely on strict class naming or avoid global styling conflicts.
 })
 export class ControlComponent implements OnInit {
+  
   label = input<string>();
 
   // labelFor = computed(()=> this.label()?.toLowerCase() ?? '');
