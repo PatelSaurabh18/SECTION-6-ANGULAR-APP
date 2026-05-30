@@ -1,4 +1,4 @@
-import { Component, input, ViewEncapsulation ,OnInit, computed } from '@angular/core';
+import { Component, input, ViewEncapsulation ,OnInit, computed, HostBinding, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -8,12 +8,27 @@ import { Component, input, ViewEncapsulation ,OnInit, computed } from '@angular/
   styleUrl: './control.component.css',
   encapsulation:ViewEncapsulation.None,
   host:{
-     class:'control'
+     class:'control',
+      // '(click)':'onClick()'
+    //  it can be used in place of @hostListener -> "'(click)':'onClick()'"
   }
-  // Yes — with encapsulation: NONE, using :host can lead to CSS conflicts and unpredictable overrides, so you must rely on strict class naming or avoid global styling conflicts.
+  
 })
 export class ControlComponent implements OnInit {
-  
+
+  // @HostBinding('class') className = 'control';
+  /*
+  now instead of using this host we can use @HostBinding('class) className = 'control'
+  here className is just a placeHolder abnd 'class' is the actual name which will be taken from here by angualr
+  but it was a old way to it is discouraged to not use this insted use the host one 
+  Same for @HostListender -> Angular teams rcdomends to use the host approach for @HostBinding and @HostListener both
+  */
+
+  @HostListener('click') onClick(){
+    console.log("clicked!");
+    
+  }
+
   label = input<string>();
 
   // labelFor = computed(()=> this.label()?.toLowerCase() ?? '');
@@ -24,4 +39,9 @@ export class ControlComponent implements OnInit {
     this.labelFor = this.label()?.toLowerCase() ?? '';
     console.log(this.labelFor);
   }
+
+  // onClick(){
+  //   console.log("Clicked!");
+    // will be used when we use it with host not with HostListener
+  // }
 }
