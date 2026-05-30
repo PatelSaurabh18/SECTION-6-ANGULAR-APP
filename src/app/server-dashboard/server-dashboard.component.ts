@@ -9,6 +9,21 @@ import { Component } from '@angular/core';
 
 })
 export class ServerDashboardComponent {
-  currentStatus = 'online';
+
+  currentStatus: 'online'|'offline'|'unknown'  = 'online';
+
+  constructor(){
+    setInterval(()=>{
+      const rnd = Math.random();
+      if(rnd < 0.5){
+        this.currentStatus = 'online';
+      }
+      else if(rnd < 0.9){
+        this.currentStatus = 'offline';
+      }else{
+        this.currentStatus="unknown"
+      }
+    },3000);
+  }
 
 }
