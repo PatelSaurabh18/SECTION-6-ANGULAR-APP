@@ -1,6 +1,13 @@
 <span>
   <!-- {{ btnText() }} -->
-    <ng-content/>
+<ng-content>
+    HAHA
+</ng-content>
+
+     <!-- instead of doing <ng-content/> we use double side on and define the fallback content, and if the parent doesn't provide for 
+     the place so this fallback contenet appears at that place -->
+<!-- in projection fallback we used <ng-content>  -> </ng-content>  instead of <ng-content/> so it is used to define a fallback if our parent fails to select so the content wrapped inside <ng-content> will be shown as a fallback, and it is a latest angular feature ? -->
+
    
 </span>
   <!-- {{ btnSymbol() }} -->
