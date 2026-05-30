@@ -1,14 +1,10 @@
 <span>
   <!-- {{ btnText() }} -->
     <ng-content/>
+   
 </span>
   <!-- {{ btnSymbol() }} -->
-    <ng-content select=".icon" />
-
-    <!-- Because:
-.icon is already a span
-The first selector would also match the icon span
-You'd have overlapping matches and more complexity
-Instead, Angular has a convenient rule:
-Any content not matched by a specific select goes to the default <ng-content>. -->
+     <span class="icon">
+         <ng-content select="icon" />
+     </span>
 

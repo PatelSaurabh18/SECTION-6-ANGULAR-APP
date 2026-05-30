@@ -12,13 +12,41 @@
         <a href="/">Management</a>
       </li>
       <li>
-    <!-- <app-button btnText="Logout" btnSymbol="->" /> -->
-    <!-- <button appButton btnText="Logout" btnSymbol="->"></button> -->
-      <button appButton > 
-        Logout
-        <span class="icon"> -> </span>
-      </button>
+        <!-- <app-button btnText="Logout" btnSymbol="->" /> -->
+        <!-- <button appButton btnText="Logout" btnSymbol="->"></button> -->
+        <button appButton>
+          Logout
+          <span ngProjectAs="icon"> -> </span>
+        </button>
 
+        <!-- ngProjectAs is used when you want Angular to pretend an element matches a different selector during content projection.
+Normal projection
+Child:
+<ng-content select=".icon"></ng-content>
+Parent:
+<span class="icon">-></span>
+Works because the element actually has class icon.
+Using ngProjectAs
+Suppose you don't want to add the class:
+<span ngProjectAs=".icon">-></span>
+Angular will treat this element as if it had .icon for projection purposes
+So:
+<ng-content select=".icon"></ng-content>
+will still receive it.
+Simple analogy
+ngProjectAs means:
+"For content projection, pretend I am this selector."
+Example:
+<span ngProjectAs=".icon">-></span>
+means:
+"Project me as if I were .icon"
+When is it useful?
+When the child component expects:
+<ng-content select=".icon"></ng-content>
+but you don't want to actually add:
+class="icon"
+to your element.
+ -->
       </li>
     </ul>
   </nav>
