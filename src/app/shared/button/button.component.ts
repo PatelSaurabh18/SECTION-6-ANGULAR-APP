@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 
 @Component({
   // selector: 'app-button',
-  selector:'button[appButton]',
+  selector:'button[appButton], a[appButton]',
   /*
   This is -> "Attribute selector"
   Attribute selectors let you use a component on an existing HTML element instead of creating a new custom tag.
