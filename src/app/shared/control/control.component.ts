@@ -1,4 +1,4 @@
-import { Component, input, ViewEncapsulation } from '@angular/core';
+import { Component, input, ViewEncapsulation ,OnInit, computed } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -6,14 +6,20 @@ import { Component, input, ViewEncapsulation } from '@angular/core';
   imports: [],
   templateUrl: './control.component.html',
   styleUrl: './control.component.css',
-  encapsulation:ViewEncapsulation.None
+  encapsulation:ViewEncapsulation.None,
+  host:{
+     class:'control'
+  }
+  // Yes — with encapsulation: NONE, using :host can lead to CSS conflicts and unpredictable overrides, so you must rely on strict class naming or avoid global styling conflicts.
 })
-export class ControlComponent {
+export class ControlComponent implements OnInit {
   label = input<string>();
 
-  labelFor = 'title';
+  // labelFor = computed(()=> this.label()?.toLowerCase() ?? '');
 
-  constructor() {
+  labelFor = this.label();
+
+  ngOnInit() {
     this.labelFor = this.label()?.toLowerCase() ?? '';
     console.log(this.labelFor);
   }
