@@ -1,4 +1,4 @@
-import { Component, input, ViewEncapsulation ,OnInit, computed, HostBinding, HostListener } from '@angular/core';
+import { Component, input, ViewEncapsulation ,OnInit, computed, HostBinding, HostListener, inject, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -9,9 +9,10 @@ import { Component, input, ViewEncapsulation ,OnInit, computed, HostBinding, Hos
   encapsulation:ViewEncapsulation.None,
   host:{
      class:'control',
-      // '(click)':'onClick()'
-    //  it can be used in place of @hostListener -> "'(click)':'onClick()'"
+      '(click)':'onClick()'
   }
+        // it can be used in place of @hostListener -> "'(click)':'onClick()'"
+
   
 })
 export class ControlComponent implements OnInit {
@@ -24,10 +25,10 @@ export class ControlComponent implements OnInit {
   Same for @HostListender -> Angular teams rcdomends to use the host approach for @HostBinding and @HostListener both
   */
 
-  @HostListener('click') onClick(){
-    console.log("clicked!");
+  // @HostListener('click') onClick(){
+  //   console.log("clicked!");
     
-  }
+  // }
 
   label = input<string>();
 
@@ -40,8 +41,11 @@ export class ControlComponent implements OnInit {
     console.log(this.labelFor);
   }
 
-  // onClick(){
-  //   console.log("Clicked!");
+  private el = inject(ElementRef);
+  
+  onClick(){
+    console.log("Clicked!");
     // will be used when we use it with host not with HostListener
-  // }
+      console.log(this.el);
+  }
 }
