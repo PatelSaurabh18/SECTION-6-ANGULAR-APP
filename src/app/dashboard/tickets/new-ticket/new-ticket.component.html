@@ -1,5 +1,5 @@
 
-<form  (ngSubmit)="onSubmit({title :  titleInput.value,ticketText : textInput.value})"  #form>
+<form  (ngSubmit)="onSubmit(titleInput.value,textInput.value)"  #form>
 <app-control label="Title">
     <input type="text"  id="title" name="title" placeholder="write title name hare...." required  #titleInput #input>
 <!-- by default when we use Template Variable, we get access to  DOM element and if we are putting Template Variable

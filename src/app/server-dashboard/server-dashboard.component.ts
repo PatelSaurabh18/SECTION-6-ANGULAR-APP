@@ -1,4 +1,4 @@
-import { Component, OnInit ,OnDestroy, inject, DestroyRef} from '@angular/core';
+import { Component, OnInit ,OnDestroy, inject, DestroyRef, effect, signal} from '@angular/core';
 import { interval } from 'rxjs';
 
 @Component({
@@ -9,7 +9,10 @@ import { interval } from 'rxjs';
   styleUrl: './server-dashboard.component.css',
 })
 export class ServerDashboardComponent implements OnInit {
-  currentStatus: 'online' | 'offline' | 'unknown' = 'online';
+  // currentStatus: 'online' | 'offline' | 'unknown' = 'online';//made changes for lecture 138
+  currentStatus = signal<'online' | 'offline' | 'unknown'>('offline');
+
+
   // private interval ?: ReturnType<typeof setInterval>;
   // private interval?: NodeJS.Timeout;
   /*
@@ -19,7 +22,11 @@ export class ServerDashboardComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   /* this is a new alternative to the ngOnDestroy introduced in angular 16 */
 
-  constructor() {}
+  constructor() {
+    effect(()=>{
+      console.log(this.currentStatus());
+    })
+  }
 
   /* if we are writing ogonInit then it is wrong but in terminal and in browser no error will be displayed but the setInterval function
   will never be executed because the ngOnInit is wroong, so it is recommended to implement the OnImit interface so if we are makign any
@@ -29,11 +36,11 @@ export class ServerDashboardComponent implements OnInit {
     const  interval = setInterval(() => {
       const rnd = Math.random(); // 0 - 0.99999999
       if (rnd < 0.5) {
-        this.currentStatus = 'online';
+        this.currentStatus.set('online');
       } else if (rnd < 0.9) {
-        this.currentStatus = 'offline';
+        this.currentStatus.set('offline');
       } else {
-        this.currentStatus = 'unknown';
+        this.currentStatus.set('unknown');
       }
     }, 3000);
 
