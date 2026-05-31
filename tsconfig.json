@@ -3,6 +3,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "rootDir": "./src",                  // 👈 Add this to fix the rootDir output layout error
+    "types": ["node"],                   // 👈 Add this to tell VS Code to look up NodeJS namespace globals
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,

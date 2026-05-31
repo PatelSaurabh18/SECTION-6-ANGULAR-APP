@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,OnDestroy} from '@angular/core';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-server-dashboard',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './server-dashboard.component.html',
   styleUrl: './server-dashboard.component.css',
 })
-export class ServerDashboardComponent implements OnInit {
+export class ServerDashboardComponent implements OnInit ,OnDestroy {
   currentStatus: 'online' | 'offline' | 'unknown' = 'online';
+  // private interval ?: ReturnType<typeof setInterval>;
+  private interval?: NodeJS.Timeout;
+  /*
+  NodeJS.Timeout; this or this  ReturnType<typeof setInterval>; both can be used here
+  */
 
   constructor() {}
 
@@ -16,7 +22,8 @@ export class ServerDashboardComponent implements OnInit {
   will never be executed because the ngOnInit is wroong, so it is recommended to implement the OnImit interface so if we are makign any
   typo mistakes the it warns us , so it adds strictness and this is the fature of the TS*/
   ngOnInit() {
-    setInterval(() => {
+    console.log('ON INIT')
+    this.interval = setInterval(() => {
       const rnd = Math.random(); // 0 - 0.99999999
       if (rnd < 0.5) {
         this.currentStatus = 'online';
@@ -27,8 +34,16 @@ export class ServerDashboardComponent implements OnInit {
       }
     }, 3000);
   }
+
+  ngAfterViewInit(){
+    console.log("AFTER VIEW INIT");
+  }
   /*
   it is advised to keep the constructor lean, so constructor is used when we want to pereform a task during creation  of a class
   whereas ngOnInit is used when "change detection" happens so it "rund after the angular has initialized all the component's input"
   */
+
+  ngOnDestroy(): void {
+      clearInterval(this.interval);
+  }
 }
