@@ -11,6 +11,8 @@ import {
   ContentChild,
   contentChild,
   AfterContentInit,
+  afterRender,
+  afterNextRender,
 } from '@angular/core';
 
 @Component({
@@ -46,6 +48,17 @@ export class ControlComponent implements OnInit, AfterContentInit {
 
   labelFor = this.label();
   private el = inject(ElementRef);
+
+
+  constructor() {
+    afterRender(()=>{
+        console.log('afterRender');
+    })
+
+    afterNextRender(()=>{
+        console.log('afterNextRender');
+    })
+  }
 
   // ngOnInit() {
   //   this.labelFor = this.label()?.toLowerCase() ?? '';
