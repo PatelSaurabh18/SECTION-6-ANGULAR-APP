@@ -1,4 +1,4 @@
-import { Component, input, ViewEncapsulation ,OnInit, computed, HostBinding, HostListener, inject, ElementRef } from '@angular/core';
+import { Component, input, ViewEncapsulation ,OnInit, computed, HostBinding, HostListener, inject, ElementRef, ContentChild, contentChild } from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -42,10 +42,24 @@ export class ControlComponent implements OnInit {
   }
 
   private el = inject(ElementRef);
+  /*
+  We can't use here @ViewChild or viewChild because it works only with the native template not with the projection(<ng-content/>)
+
+  */
+
+  // @ContentChild('input') private control ?: ElementRef<HTMLImageElement|HTMLTextAreaElement>;
+  /*
+  even though we are using @ContentChild instead of @ContentChildren because in each instance of my ControlComponent,
+   there will be only 1 inputElement or textAreaElement
+  */
+ private control = contentChild<ElementRef<HTMLImageElement|HTMLTextAreaElement>>('input');
+
+
   
   onClick(){
     console.log("Clicked!");
     // will be used when we use it with host not with HostListener
       console.log(this.el);
+      console.log(this.control());
   }
 }
