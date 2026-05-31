@@ -1,11 +1,13 @@
 
-<form  (ngSubmit)="onSubmit({titleInput.value,textInput.value})">
+<form  (ngSubmit)="onSubmit({title :  titleInput.value,ticketText : textInput.value})">
 <app-control label="Title">
     <input type="text"  id="title" name="title" placeholder="write title name hare...." required  #titleInput >
-
+<!-- by default when we use Template Variable, we get access to  DOM element and if we are putting Template Variable
+  on one of our custom made components(appButton/app-control) then we get access  to the component instance instead. 
+  so we have to use this Template Variable with the default DOM elements like input etc-->
 </app-control>
  
-<app-control  label="Request">
+<app-control  label="Request" >
   
     <textarea id="request" rows="3" required  #textInput></textarea>    
 </app-control>
@@ -13,7 +15,7 @@
 <p>
     <!-- <app-button btnText="Submit" btnSymbol="⧐"/> -->
      <!-- <button appButton btnText="Submit" btnSymbol="⧐"></button> -->
-      <button appButton > 
+      <button appButton  > 
         Submit 
         <span ngProjectAs="icon"> ⧐ </span>
     </button>
