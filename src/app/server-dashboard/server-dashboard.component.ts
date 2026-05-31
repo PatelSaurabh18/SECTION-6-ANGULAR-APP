@@ -25,7 +25,7 @@ export class ServerDashboardComponent implements OnInit {
   will never be executed because the ngOnInit is wroong, so it is recommended to implement the OnImit interface so if we are makign any
   typo mistakes the it warns us , so it adds strictness and this is the fature of the TS*/
   ngOnInit() {
-    console.log('ON INIT')
+    // console.log('ON INIT')
     const  interval = setInterval(() => {
       const rnd = Math.random(); // 0 - 0.99999999
       if (rnd < 0.5) {
@@ -43,7 +43,7 @@ export class ServerDashboardComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    console.log("AFTER VIEW INIT");
+    // console.log("AFTER VIEW INIT");
   }
   /*
   it is advised to keep the constructor lean, so constructor is used when we want to pereform a task during creation  of a class

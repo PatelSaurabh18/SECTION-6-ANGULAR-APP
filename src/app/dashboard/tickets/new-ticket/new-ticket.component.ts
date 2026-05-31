@@ -1,4 +1,12 @@
-import { Component, ElementRef, viewChild, ViewChild, ViewChildren } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  viewChild,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { ButtonComponent } from '../../../shared/button/button.component';
@@ -7,25 +15,35 @@ import { log } from 'node:console';
 @Component({
   selector: 'app-new-ticket',
   standalone: true,
-  imports: [ButtonComponent,ControlComponent,FormsModule],
+  imports: [ButtonComponent, ControlComponent, FormsModule],
   templateUrl: './new-ticket.component.html',
-  styleUrl: './new-ticket.component.css'
+  styleUrl: './new-ticket.component.css',
 })
-
-export class NewTicketComponent {
+export class NewTicketComponent implements OnInit, AfterViewInit {
   // @ViewChild('form') private form?: ElementRef<HTMLFormElement>;
   /* @ViewChildren(ButtonComponent) buttons!: ElementRef<HTMLFormElement>;
     this is used when we want to consume more than 1 Template Variables of same type so we will be having an array of 
     ButtonComponent type , and this viewChild fn is added in angular 17.3
   */
 
-    private form  = viewChild.required<ElementRef<HTMLFormElement>>('form');
+  private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
+  ngOnInit(): void {
+      console.log("IN INIT");
+      console.log(this.form()?.nativeElement);      
+  }
 
+  ngAfterViewInit(): void {
+      console.log("AFTER VIEW INIT");
+      console.log(this.form()?.nativeElement);
+      
+      
+  }
 
-  onSubmit(inputValues: {title:string,ticketText:string}){
+  onSubmit(inputValues: { title: string; ticketText: string }) {
     console.log(inputValues.title);
     console.log(inputValues.ticketText);
     // this.form?.nativeElement.reset();
-    this.form()?.nativeElement.reset()
+    this.form()?.nativeElement.reset();
   }
 }
+
