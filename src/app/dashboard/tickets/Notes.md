@@ -87,3 +87,6 @@ export class AppComponent {
 3. **No Component Module Clutter:** You do not need to pull in `CommonModule` from `@angular/common` to access these layout features on Angular 17 or higher.
 
 🔥 **One-Line Memory Trick:** *“@for paints the repeating rows, @empty displays the zero-length safety net, and the dollar variables reveal contextual layout positions automatically.”*
+
+
+
