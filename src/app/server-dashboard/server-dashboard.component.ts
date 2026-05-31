@@ -1,4 +1,4 @@
-import { Component, OnInit ,OnDestroy} from '@angular/core';
+import { Component, OnInit ,OnDestroy, inject, DestroyRef} from '@angular/core';
 import { interval } from 'rxjs';
 
 @Component({
@@ -8,13 +8,16 @@ import { interval } from 'rxjs';
   templateUrl: './server-dashboard.component.html',
   styleUrl: './server-dashboard.component.css',
 })
-export class ServerDashboardComponent implements OnInit ,OnDestroy {
+export class ServerDashboardComponent implements OnInit {
   currentStatus: 'online' | 'offline' | 'unknown' = 'online';
   // private interval ?: ReturnType<typeof setInterval>;
-  private interval?: NodeJS.Timeout;
+  // private interval?: NodeJS.Timeout;
   /*
   NodeJS.Timeout; this or this  ReturnType<typeof setInterval>; both can be used here
   */
+
+  private destroyRef = inject(DestroyRef);
+  /* this is a new alternative to the ngOnDestroy introduced in angular 16 */
 
   constructor() {}
 
@@ -23,7 +26,7 @@ export class ServerDashboardComponent implements OnInit ,OnDestroy {
   typo mistakes the it warns us , so it adds strictness and this is the fature of the TS*/
   ngOnInit() {
     console.log('ON INIT')
-    this.interval = setInterval(() => {
+    const  interval = setInterval(() => {
       const rnd = Math.random(); // 0 - 0.99999999
       if (rnd < 0.5) {
         this.currentStatus = 'online';
@@ -33,6 +36,10 @@ export class ServerDashboardComponent implements OnInit ,OnDestroy {
         this.currentStatus = 'unknown';
       }
     }, 3000);
+
+    this.destroyRef.onDestroy(()=>{
+      clearInterval(interval);
+    })
   }
 
   ngAfterViewInit(){
@@ -43,7 +50,7 @@ export class ServerDashboardComponent implements OnInit ,OnDestroy {
   whereas ngOnInit is used when "change detection" happens so it "rund after the angular has initialized all the component's input"
   */
 
-  ngOnDestroy(): void {
-      clearInterval(this.interval);
-  }
+  // ngOnDestroy(): void {
+  //     clearInterval(this.interval);
+  // }
 }
