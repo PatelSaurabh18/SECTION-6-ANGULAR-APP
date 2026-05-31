@@ -12,10 +12,12 @@ import { log } from 'node:console';
   styleUrl: './new-ticket.component.css'
 })
 export class NewTicketComponent {
-  onSubmit(titleElement :HTMLInputElement){
+  onSubmit(inputValues: {title:string,ticketText:string}){
     // console.dir(titleElement);
     // console.log("SUBMITTED");
-    const title = titleElement.value;
-    console.log(title);
+    // const title = titleElement.value;
+    // console.log(title);
+    console.log(inputValues.title);
+    console.log(inputValues.ticketText);
   }
 }
