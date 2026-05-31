@@ -21,6 +21,7 @@ export class TicketsComponent {
       };
 
       this.tickets.push(ticket);
+      // this.tickets =  [...this.tickets, ticket]; 
   }
 
   onCloseTicket(id:string){

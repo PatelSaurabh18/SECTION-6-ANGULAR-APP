@@ -1,26 +1,31 @@
-
-<form  (ngSubmit)="onSubmit(titleInput.value,textInput.value)"  #form>
-<app-control label="Title">
-    <input type="text"  id="title" name="title" placeholder="write title name hare...." required  #titleInput #input>
-<!-- by default when we use Template Variable, we get access to  DOM element and if we are putting Template Variable
+<form (ngSubmit)="onSubmit()" #form>
+  <app-control label="Title">
+    <input
+      type="text"
+      id="title"
+      name="title"
+      placeholder="write title name hare...."
+      required
+      [(ngModel)]="enteredTitle"
+      #input
+    />
+    <!-- by default when we use Template Variable, we get access to  DOM element and if we are putting Template Variable
   on one of our custom made components(appButton/app-control) then we get access  to the component instance instead. 
   so we have to use this Template Variable with the default DOM elements like input etc-->
-</app-control>
- 
-<app-control  label="Request" >
-  
-    <textarea id="request" rows="3" required  #textInput #input></textarea>    
-    /*
-    we can add multiple Template variables and same variable in multiple elements
-    */
-</app-control>
+  </app-control>
 
-<p>
+  <app-control label="Request">
+    <textarea id="request" rows="3" name="request" required  #input [(ngModel)]="enteredText"></textarea>
+    /* we can add multiple Template variables and same variable in multiple
+    elements */
+  </app-control>
+
+  <p>
     <!-- <app-button btnText="Submit" btnSymbol="⧐"/> -->
-     <!-- <button appButton btnText="Submit" btnSymbol="⧐"></button> -->
-      <button appButton  > 
-        Submit 
-        <span ngProjectAs="icon"> ⧐ </span>
+    <!-- <button appButton btnText="Submit" btnSymbol="⧐"></button> -->
+    <button appButton>
+      Submit
+      <span ngProjectAs="icon"> ⧐ </span>
     </button>
-</p>
-</form>     
+  </p>
+</form>

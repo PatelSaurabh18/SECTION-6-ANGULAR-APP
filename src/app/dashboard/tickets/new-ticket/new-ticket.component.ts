@@ -28,6 +28,8 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
     this is used when we want to consume more than 1 Template Variables of same type so we will be having an array of 
     ButtonComponent type , and this viewChild fn is added in angular 17.3
   */
+ enteredTitle = '';
+ enteredText = '';
 
   private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
 
@@ -46,14 +48,16 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
       // console.log(this.form()?.nativeElement);
   }
 
-  onSubmit(title: string,ticketText: string) {
+  onSubmit() {
     // console.log(inputValues.title);
     // console.log(inputValues.ticketText);
     // this.form?.nativeElement.reset();
-    this.add.emit({title:title,text:ticketText});
+    this.add.emit({title:this.enteredTitle,text:this.enteredText});
 
-    
-    this.form()?.nativeElement.reset();
+
+    // this.form()?.nativeElement.reset();
+    this.enteredText='';
+    this.enteredTitle='';
   }
 }
 
